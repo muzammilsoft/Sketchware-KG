@@ -144,11 +144,12 @@ public final class VoidPortModelCapabilities {
         add("anthropic", "claude-3-5-haiku-latest", 200_000, 8_192, SystemMessageSupport.SEPARATED, ToolFormat.ANTHROPIC_STYLE, false, ReasoningCapabilities.none());
         add("anthropic", "claude-3-opus-latest", 200_000, 4_096, SystemMessageSupport.SEPARATED, ToolFormat.ANTHROPIC_STYLE, false, ReasoningCapabilities.none());
 
-        add("gemini", "gemini-2.5-pro-exp-03-25", 1_048_576, 65_536, SystemMessageSupport.SYSTEM_ROLE, ToolFormat.GEMINI_STYLE, false, ReasoningCapabilities.budget(true, 65_536, 128, 32_768, 8_192));
-        add("gemini", "gemini-2.5-pro-preview-05-06", 1_048_576, 65_536, SystemMessageSupport.SYSTEM_ROLE, ToolFormat.GEMINI_STYLE, false, ReasoningCapabilities.budget(true, 65_536, 128, 32_768, 8_192));
-        add("gemini", "gemini-2.5-flash-preview-04-17", 1_048_576, 65_536, SystemMessageSupport.SYSTEM_ROLE, ToolFormat.GEMINI_STYLE, false, ReasoningCapabilities.budget(true, 65_536, 128, 24_576, 8_192));
+        add("gemini", "gemini-3.5-flash", 1_048_576, 8_192, SystemMessageSupport.SYSTEM_ROLE, ToolFormat.GEMINI_STYLE, false, ReasoningCapabilities.none());
+        add("gemini", "gemini-1.5-flash", 1_048_576, 8_192, SystemMessageSupport.SYSTEM_ROLE, ToolFormat.GEMINI_STYLE, false, ReasoningCapabilities.none());
+        add("gemini", "gemini-1.5-pro", 1_048_576, 8_192, SystemMessageSupport.SYSTEM_ROLE, ToolFormat.GEMINI_STYLE, false, ReasoningCapabilities.none());
         add("gemini", "gemini-2.0-flash", 1_048_576, 8_192, SystemMessageSupport.SYSTEM_ROLE, ToolFormat.GEMINI_STYLE, false, ReasoningCapabilities.none());
         add("gemini", "gemini-2.0-flash-lite", 1_048_576, 8_192, SystemMessageSupport.SYSTEM_ROLE, ToolFormat.GEMINI_STYLE, false, ReasoningCapabilities.none());
+        add("gemini", "gemini-2.0-pro-exp-02-05", 1_048_576, 65_536, SystemMessageSupport.SYSTEM_ROLE, ToolFormat.GEMINI_STYLE, false, ReasoningCapabilities.none());
 
         add("deepseek", "deepseek-chat", 64_000, 8_192, SystemMessageSupport.SYSTEM_ROLE, ToolFormat.OPENAI_STYLE, false, ReasoningCapabilities.none());
         add("deepseek", "deepseek-reasoner", 64_000, 8_192, SystemMessageSupport.SYSTEM_ROLE, ToolFormat.OPENAI_STYLE, false, ReasoningCapabilities.thinkTags(false, true, 8_192));
@@ -267,8 +268,14 @@ public final class VoidPortModelCapabilities {
                 ? ToolFormat.OPENAI_STYLE
                 : ToolFormat.XML_FALLBACK;
 
-        if (lower.contains("gemini") && (lower.contains("2.5") || lower.contains("2-5"))) {
-            return recognized(modelName, "gemini-2.5", 1_048_576, 65_536, SystemMessageSupport.SYSTEM_ROLE, ToolFormat.GEMINI_STYLE, false, ReasoningCapabilities.budget(true, 65_536, 128, 32_768, 8_192));
+        if (lower.contains("gemini") && (lower.contains("1.5") || lower.contains("1-5"))) {
+            return recognized(modelName, "gemini-1.5", 1_048_576, 8_192, SystemMessageSupport.SYSTEM_ROLE, ToolFormat.GEMINI_STYLE, false, ReasoningCapabilities.none());
+        }
+        if (lower.contains("gemini") && (lower.contains("3.5") || lower.contains("3-5"))) {
+            return recognized(modelName, "gemini-3.5", 1_048_576, 8_192, SystemMessageSupport.SYSTEM_ROLE, ToolFormat.GEMINI_STYLE, false, ReasoningCapabilities.none());
+        }
+        if (lower.contains("gemini") && (lower.contains("2.0") || lower.contains("2-0"))) {
+            return recognized(modelName, "gemini-2.0", 1_048_576, 8_192, SystemMessageSupport.SYSTEM_ROLE, ToolFormat.GEMINI_STYLE, false, ReasoningCapabilities.none());
         }
         if (lower.contains("claude-3-5") || lower.contains("claude-3.5")) {
             return recognized(modelName, "claude-3-5-sonnet", 200_000, 8_192, SystemMessageSupport.SEPARATED, ToolFormat.ANTHROPIC_STYLE, false, ReasoningCapabilities.none());

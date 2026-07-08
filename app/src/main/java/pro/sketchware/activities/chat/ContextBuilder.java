@@ -571,18 +571,30 @@ public class ContextBuilder {
         for (SimpleMessage message : simpleMessages) {
             try {
                 if (message.role == SimpleMessage.ROLE_USER) {
-                    array.put(new JSONObject()
-                            .put("role", "user")
-                            .put("parts", new JSONArray().put(new JSONObject()
-                                    .put("text", nonEmptyText(message.content)))));
+                    JSONObject last = array.length() > 0 ? array.optJSONObject(array.length() - 1) : null;
+                    if (last != null && "user".equals(last.optString("role"))) {
+                        last.getJSONArray("parts").put(new JSONObject()
+                                .put("text", nonEmptyText(message.content)));
+                    } else {
+                        array.put(new JSONObject()
+                                .put("role", "user")
+                                .put("parts", new JSONArray().put(new JSONObject()
+                                        .put("text", nonEmptyText(message.content)))));
+                    }
                     continue;
                 }
 
                 if (message.role == SimpleMessage.ROLE_ASSISTANT) {
-                    array.put(new JSONObject()
-                            .put("role", "model")
-                            .put("parts", new JSONArray().put(new JSONObject()
-                                    .put("text", nonEmptyText(buildAssistantContent(message, false))))));
+                    JSONObject last = array.length() > 0 ? array.optJSONObject(array.length() - 1) : null;
+                    if (last != null && "model".equals(last.optString("role"))) {
+                        last.getJSONArray("parts").put(new JSONObject()
+                                .put("text", nonEmptyText(buildAssistantContent(message, false))));
+                    } else {
+                        array.put(new JSONObject()
+                                .put("role", "model")
+                                .put("parts", new JSONArray().put(new JSONObject()
+                                        .put("text", nonEmptyText(buildAssistantContent(message, false))))));
+                    }
                     continue;
                 }
 
@@ -595,10 +607,6 @@ public class ContextBuilder {
                         array.put(modelMessage);
                     }
                     JSONArray modelParts = modelMessage.optJSONArray("parts");
-                    if (modelParts == null) {
-                        modelParts = new JSONArray();
-                        modelMessage.put("parts", modelParts);
-                    }
                     modelParts.put(new JSONObject()
                             .put("functionCall", new JSONObject()
                                     .put("name", message.toolName)
@@ -864,12 +872,23 @@ public class ContextBuilder {
 
         try {
             JSONObject last = trimmed.optJSONObject(trimmed.length() - 1);
-            if (last != null && last.has("content")) {
-                Object content = last.opt("content");
-                if (content instanceof String) {
-                    last.put("content", nonEmptyText(trimToTokens((String) content, Math.max(120, historyBudgetTokens / 2))));
-                } else if (content instanceof JSONArray) {
-                    trimAnthropicContent((JSONArray) content, Math.max(120, historyBudgetTokens / 2));
+            if (last != null) {
+                if (last.has("content")) {
+                    Object content = last.opt("content");
+                    if (content instanceof String) {
+                        last.put("content", nonEmptyText(trimToTokens((String) content, Math.max(120, historyBudgetTokens / 2))));
+                    } else if (content instanceof JSONArray) {
+                        trimAnthropicContent((JSONArray) content, Math.max(120, historyBudgetTokens / 2));
+                    }
+                } else if (last.has("parts")) {
+                    JSONArray parts = last.optJSONArray("parts");
+                    if (parts != null && parts.length() > 0) {
+                        JSONObject lastPart = parts.optJSONObject(parts.length() - 1);
+                        if (lastPart != null && lastPart.has("text")) {
+                            String text = lastPart.optString("text", "");
+                            lastPart.put("text", nonEmptyText(trimToTokens(text, Math.max(120, historyBudgetTokens / 2))));
+                        }
+                    }
                 }
             }
         } catch (Exception ignored) {

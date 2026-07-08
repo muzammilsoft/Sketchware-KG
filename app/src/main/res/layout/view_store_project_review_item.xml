@@ -44,7 +44,7 @@
                 android:textColor="@color/chat_text_primary"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                tools:text="Fabio Silva" />
+                tools:text="KG Silva" />
 
             <TextView
                 android:id="@+id/review_date"
