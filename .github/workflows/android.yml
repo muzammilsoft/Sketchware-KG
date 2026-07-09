@@ -157,7 +157,7 @@ jobs:
         shell: bash
         run: |
           release_tag="main-build-${{ github.run_id }}-${{ github.run_attempt }}-${{ needs.build.outputs.short_sha }}"
-          asset_name="Sketchware-IA-main-${{ needs.build.outputs.short_sha }}-run${{ github.run_number }}.apk"
+          asset_name="Sketchware-KG-main-${{ needs.build.outputs.short_sha }}-run${{ github.run_number }}.apk"
 
           echo "release_tag=${release_tag}" >> "$GITHUB_OUTPUT"
           echo "asset_name=${asset_name}" >> "$GITHUB_OUTPUT"

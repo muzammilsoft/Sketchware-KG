@@ -38,8 +38,8 @@ android {
         release {
             // Support env vars for CI (GitHub Actions secrets), fall back to local keystore.
             // To use in CI, set these GitHub Actions secrets:
-            //   KEYSTORE_BASE64   – base64-encoded sketchware-ia.keystore
-            //   KEY_ALIAS         – sketchware-ia
+            //   KEYSTORE_BASE64   – base64-encoded sketchware-kg.keystore
+            //   KEY_ALIAS         – sketchware-kg
             //   KEY_PASSWORD      – keystore key password
             //   STORE_PASSWORD    – keystore store password
             def keystoreBase64 = System.getenv("KEYSTORE_BASE64")
@@ -51,10 +51,10 @@ android {
                 tmpKeystore.bytes = keystoreBytes
                 storeFile = tmpKeystore
             } else {
-                storeFile = file("../sketchware-ia.keystore")
+                storeFile = file("../sketchware-kg.keystore")
             }
             storePassword = System.getenv("STORE_PASSWORD") ?: "sketchware123"
-            keyAlias     = System.getenv("KEY_ALIAS")      ?: "sketchware-ia"
+            keyAlias     = System.getenv("KEY_ALIAS")      ?: "sketchware-kg"
             keyPassword  = System.getenv("KEY_PASSWORD")   ?: "sketchware123"
         }
     }

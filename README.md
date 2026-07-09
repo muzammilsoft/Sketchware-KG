@@ -1,7 +1,7 @@
 # Sketchware KG
 
 <p align="center">
-  <img src="assets/sketchware-ia-icon.svg" width="160" alt="Sketchware KG Logo">
+  <img src="assets/sketchware-kg-icon.svg" width="160" alt="Sketchware KG Logo">
 </p>
 
 <h3 align="center">
