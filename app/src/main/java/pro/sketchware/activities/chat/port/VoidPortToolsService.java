@@ -33,7 +33,7 @@ import pro.sketchware.util.FileChangeTracker;
 
 /**
  * Android port of browser/toolsService.ts
- * Provides all builtin tools from Void for use in Sketchware-IA chat.
+ * Provides all builtin tools from Void for use in Sketchware-KG chat.
  */
 public final class VoidPortToolsService {
 

@@ -47,7 +47,7 @@ public final class VoidPortAiRegexService {
 
     public static RegexPlan generateRegex(Context context, String task, String sampleText,
                                           String replacementTask) throws Exception {
-        String systemPrompt = "You generate Java Pattern-compatible regex for Sketchware IA. "
+        String systemPrompt = "You generate Java Pattern-compatible regex for Sketchware KG. "
                 + "Return compact JSON only, with keys regex, replacement, explanation, caseInsensitive. "
                 + "Do not include markdown.";
         String userPrompt = "Task:\n" + safe(task)

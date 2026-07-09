@@ -2175,7 +2175,7 @@ public class ChatActivity extends AppCompatActivity {
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Sketchware IA Chat Export - " + sc_id);
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Sketchware KG Chat Export - " + sc_id);
         intent.putExtra(Intent.EXTRA_TEXT, sb.toString());
         startActivity(Intent.createChooser(intent, getString(R.string.chat_menu_export_chat)));
     }

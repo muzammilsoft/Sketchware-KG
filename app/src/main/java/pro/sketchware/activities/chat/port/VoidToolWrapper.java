@@ -9,7 +9,7 @@ import pro.sketchware.ia.tools.ToolManager;
 
 /**
  * Wrapper that adapts VoidPortToolsService builtin tools to the Tool interface.
- * All Void tools are prioritized over legacy Sketchware-IA tools.
+ * All Void tools are prioritized over legacy Sketchware-KG tools.
  */
 public class VoidToolWrapper implements Tool {
     private final String toolName;

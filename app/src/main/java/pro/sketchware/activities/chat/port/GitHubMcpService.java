@@ -105,7 +105,7 @@ public final class GitHubMcpService {
             tools.put(tool(TOOL_SEARCH_CODE,
                     "Search code inside a GitHub repository using the GitHub Search API.",
                     params()
-                        .req("query", "string", "Search query, e.g. 'AgentManager repo:FabioSilva11/Sketchware-IA'")));
+                        .req("query", "string", "Search query, e.g. 'AgentManager repo:FabioSilva11/Sketchware-KG'")));
 
             tools.put(tool(TOOL_LIST_ISSUES,
                     "List open issues of a GitHub repository.",
@@ -400,7 +400,7 @@ public final class GitHubMcpService {
                 .header("Authorization", "Bearer " + token)
                 .header("Accept", "application/vnd.github+json")
                 .header("X-GitHub-Api-Version", "2022-11-28")
-                .header("User-Agent", "Sketchware-IA-Android");
+                .header("User-Agent", "Sketchware-KG-Android");
     }
 
     @NonNull

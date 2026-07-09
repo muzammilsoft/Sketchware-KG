@@ -6,7 +6,7 @@
     <string name="design_manager_lottie_title_add_lottie">jnvjnjvnrvn</string>
     <string name="search_menu_title">Search</string>
     <string name="search">Search</string>
-    <string name="app_name">Sketchware IA</string>
+    <string name="app_name">Sketchware KG</string>
     <string name="appbar_scrolling_view_behavior">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="besome_blog_url">http://medium.com/sketchware</string>
     <string name="block_add_list_int_body_1">to</string>
@@ -2131,7 +2131,7 @@ Please try again later"</string>
     <string name="title_company_url">Website</string>
     <string name="title_compatible_chrome_browser">Chrome Browser Required</string>
     <string name="title_telegram_community">Telegram</string>
-    <string name="title_sketchware">Sketchware IA</string>
+    <string name="title_sketchware">Sketchware KG</string>
     <string name="view_panel_title_layouts">Layouts</string>
     <string name="view_panel_title_properties">Properties</string>
     <string name="view_panel_title_widgets">Widgets</string>
@@ -2227,7 +2227,7 @@ Please try again later"</string>
     <string name="assets_manager_rename">Rename</string>
 
     <!--  about the team screen  -->
-    <string name="about_title">About Sketchware IA</string>
+    <string name="about_title">About Sketchware KG</string>
     <string name="about_team_title">The team</string>
     <string name="about_specialthanks_title">Special Thanks</string>
     <string name="about_changelog_title">Changelog</string>
@@ -2237,7 +2237,7 @@ Please try again later"</string>
     <string name="about_jointelegram">Join our Telegram</string>
 
     <!--  links  -->
-    <string name="link_github_release">https://github.com/FabioSilva11/Sketchware-IA/releases</string>
+    <string name="link_github_release">https://github.com/muzammilsoft/Sketchware-KG/releases</string>
     <string name="link_docs_url">https://t.me/sketcware_ia</string>
     <string name="link_youtube_url">https://youtube.com/@sketchware-ia?si=C4xJ-0xfeXxUnnB7</string>
     <string name="link_telegram_invite">https://t.me/sketcware_ia</string>
@@ -2245,11 +2245,11 @@ Please try again later"</string>
     <string name="title_discord_community">Discord</string>
     <string name="link_discord_invite">https://t.me/sketcware_ia</string>
     <string name="link_about_team">https://sketchware-pro.github.io/Sketchware-Pro/about.json</string>
-    <string name="link_about_teamm">https://raw.githubusercontent.com/FabioSilva11/Sketchware-IA/main/about.json</string>
-    <string name="link_github_commits_url"><![CDATA[https://api.github.com/repos/FabioSilva11/Sketchware-IA/commits?per_page=%s&page=%s]]></string>
+    <string name="link_about_teamm">https://raw.githubusercontent.com/FabioSilva11/Sketchware-KG/main/about.json</string>
+    <string name="link_github_commits_url"><![CDATA[https://api.github.com/repos/FabioSilva11/Sketchware-KG/commits?per_page=%s&page=%s]]></string>
     <string name="github_api_error_message">Something went wrong. Please wait and try again.</string>
     <string name="github_api_date_unavailable">Date unavailable</string>
-    <string name="link_github_url">https://github.com/FabioSilva11/Sketchware-IA</string>
+    <string name="link_github_url">https://github.com/muzammilsoft/Sketchware-KG</string>
     <string name="change_launcher_activity_dialog_title">Launcher Activity</string>
     <string name="common_word_add_activtiy">Add Activity</string>
     <string name="delete_custom_activity_dialog_message">All features related to %1$s will be removed. Are you sure?</string>
@@ -2426,9 +2426,9 @@ Please try again later"</string>
 
     <!-- Donation dialog and drawer -->
     <string name="donation_dialog_title">Support the project</string>
-    <string name="donation_dialog_message">If you enjoy Sketchware IA, consider making a donation to support ongoing development and keep the project alive.</string>
+    <string name="donation_dialog_message">If you enjoy Sketchware KG, consider making a donation to support ongoing development and keep the project alive.</string>
     <string name="donation_button_donate">Donate</string>
     <string name="donation_button_cancel">Cancel</string>
     <string name="main_drawer_title_donate">Donate</string>
-    <string name="link_donation_url">https://buy.stripe.com/6oU3cw0po1l90Ik52s0co00</string>
+    <string name="link_donation_url">https://github.com/muzammilsoft/Sketchware-KG/</string>
 </resources>

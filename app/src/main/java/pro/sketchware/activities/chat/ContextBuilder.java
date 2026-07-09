@@ -610,7 +610,8 @@ public class ContextBuilder {
                     modelParts.put(new JSONObject()
                             .put("functionCall", new JSONObject()
                                     .put("name", message.toolName)
-                                    .put("args", parseJsonObject(message.toolArgs))));
+                                    .put("args", parseJsonObject(message.toolArgs))
+                                    .put("thought_signature", "")));
 
                     array.put(new JSONObject()
                             .put("role", "user")
