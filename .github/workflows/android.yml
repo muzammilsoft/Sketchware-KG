@@ -43,10 +43,12 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
 
       - name: Decode Keystore
-        env:
-          KEYSTORE_DATA: ${{ secrets.KEYSTORE_BASE64 }}
-        if: ${{ env.KEYSTORE_DATA != '' }}
-        run: echo "$KEYSTORE_DATA" | base64 --decode > app/sketchware-kg.keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > app/sketchware-kg.keystore
+          if [ ! -s app/sketchware-kg.keystore ]; then
+            echo "ERROR: Keystore file is empty or missing! Please check your KEYSTORE_BASE64 secret in GitHub Settings."
+            exit 1
+          fi
 
       - name: Build Release APK
         env:
@@ -76,7 +78,7 @@ jobs:
 
   publishRelease:
     name: Publish APK to GitHub Releases
-    runs-on: ${{ vars.IS_USING_HOSTS_RUNNERS == 'true' && 'self-hosted' || 'ubuntu-latest' }}
+    runs-on: ${{ vars.IS_USING_HOSTED_RUNNERS == 'true' && 'self-hosted' || 'ubuntu-latest' }}
     needs: build
     if: github.ref == 'refs/heads/main'
     permissions:
