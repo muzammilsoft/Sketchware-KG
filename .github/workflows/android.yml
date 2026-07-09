@@ -43,8 +43,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
 
       - name: Decode Keystore
-        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
-        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > app/sketchware-kg.keystore
+        env:
+          KEYSTORE_DATA: ${{ secrets.KEYSTORE_BASE64 }}
+        if: ${{ env.KEYSTORE_DATA != '' }}
+        run: echo "$KEYSTORE_DATA" | base64 --decode > app/sketchware-kg.keystore
 
       - name: Build Release APK
         env:
@@ -74,7 +76,7 @@ jobs:
 
   publishRelease:
     name: Publish APK to GitHub Releases
-    runs-on: ${{ vars.IS_USING_HOSTED_RUNNERS == 'true' && 'self-hosted' || 'ubuntu-latest' }}
+    runs-on: ${{ vars.IS_USING_HOSTS_RUNNERS == 'true' && 'self-hosted' || 'ubuntu-latest' }}
     needs: build
     if: github.ref == 'refs/heads/main'
     permissions:
