@@ -1,11 +1,11 @@
 name: Bug report
-description: Report a reproducible problem in Sketchware IA
+description: Report a reproducible problem in Sketchware KG
 labels: [ "bug" ]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for helping improve Sketchware IA. Please include enough detail for us to reproduce the issue.
+        Thanks for helping improve Sketchware KG. Please include enough detail for us to reproduce the issue.
   - type: textarea
     id: bug-description
     attributes:
@@ -65,9 +65,9 @@ body:
   - type: input
     id: sketchware-pro-version
     attributes:
-      label: Sketchware IA version
+      label: Sketchware KG version
       description: e.g. v7.0.0 or commit hash
-      placeholder: Your Sketchware IA version
+      placeholder: Your Sketchware KG version
     validations:
       required: true
   - type: input

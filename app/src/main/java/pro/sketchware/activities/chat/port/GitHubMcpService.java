@@ -105,7 +105,7 @@ public final class GitHubMcpService {
             tools.put(tool(TOOL_SEARCH_CODE,
                     "Search code inside a GitHub repository using the GitHub Search API.",
                     params()
-                        .req("query", "string", "Search query, e.g. 'AgentManager repo:FabioSilva11/Sketchware-KG'")));
+                        .req("query", "string", "Search query, e.g. 'AgentManager repo:muzammilsoft/Sketchware-KG'")));
 
             tools.put(tool(TOOL_LIST_ISSUES,
                     "List open issues of a GitHub repository.",
