@@ -104,7 +104,7 @@ public final class VoidPortLlmMessage {
                     ProviderFamily.OPENAI_COMPATIBLE,
                     configuredRequestUrl(prefs, "openrouter", "https://openrouter.ai/api/v1", "/chat/completions"),
                     activeApiKey(prefs, "openrouter", prefs.getString("openrouter_api_key", "")),
-                    readHeadersJson("{\"HTTP-Referer\":\"https://github.com/FabioSilva11/Sketchware-IA\",\"X-Title\":\"Sketchware IA\"}"),
+                    readHeadersJson("{\"HTTP-Referer\":\"https://github.com/muzammilsoft/Sketchware-KG\",\"X-Title\":\"Sketchware KG\"}"),
                     true
             );
             case "openai_compatible" -> new ProviderConfig(

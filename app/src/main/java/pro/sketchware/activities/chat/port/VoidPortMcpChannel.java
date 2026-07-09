@@ -273,7 +273,7 @@ public final class VoidPortMcpChannel {
                         .put("protocolVersion", "2024-11-05")
                         .put("capabilities", new JSONObject())
                         .put("clientInfo", new JSONObject()
-                                .put("name", "Sketchware IA Android")
+                                .put("name", "Sketchware KG Android")
                                 .put("version", "android"))), "");
         String sessionId = init.sessionId;
         try {

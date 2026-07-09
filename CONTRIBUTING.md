@@ -1,6 +1,6 @@
-# Contributing to Sketchware IA
+# Contributing to Sketchware KG
 
-Thank you for considering a contribution to Sketchware IA. This project grows through careful, community-driven improvements, and every solid contribution helps keep Sketchware alive for more people.
+Thank you for considering a contribution to Sketchware KG. This project grows through careful, community-driven improvements, and every solid contribution helps keep Sketchware alive for more people.
 
 ## Ways to contribute
 
@@ -77,4 +77,4 @@ Before opening a pull request, make sure you:
 
 Do not commit personal signing keys, tokens, or private credentials. If you need to test local signing, use your own local-only files and keep them out of version control.
 
-Thank you for helping improve Sketchware IA.
+Thank you for helping improve Sketchware KG.

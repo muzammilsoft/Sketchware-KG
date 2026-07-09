@@ -194,8 +194,8 @@ public class GithubSettingsActivity extends BaseAppCompatActivity {
         addMuted(tipsContent,
                 "No chat em modo agente você pode dizer:\n\n" +
                 "\"Liste meus repositórios\"\n" +
-                "\"Leia o arquivo app/build.gradle do repositório FabioSilva11/Sketchware-IA\"\n" +
-                "\"Pesquise AgentManager no meu repo Sketchware-IA\"\n" +
+                "\"Leia o arquivo app/build.gradle do repositório FabioSilva11/Sketchware-KG\"\n" +
+                "\"Pesquise AgentManager no meu repo Sketchware-KG\"\n" +
                 "\"Crie uma issue com título 'Bug: assinatura falha no API 30'\"\n" +
                 "\"Abra um PR de fix/signing-v3 para main\"\n\n" +
                 "O agente chamará a ferramenta GitHub correta automaticamente.");
