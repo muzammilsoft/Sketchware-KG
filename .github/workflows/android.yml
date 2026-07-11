@@ -36,6 +36,7 @@ jobs:
 
       - name: Create Keystore
         run: |
+          rm -f sketchware-ia.keystore
           keytool -genkey -v -keystore sketchware-ia.keystore -storepass sketchware123 \
             -alias sketchware-ia -keypass sketchware123 -keyalg RSA -keysize 2048 \
             -validity 10000 -dname "CN=Sketchware,O=KG,C=KG"
