@@ -54,6 +54,10 @@ public class ComponentBean extends CollapsibleBean implements Parcelable {
     public static final int COMPONENT_TYPE_FIREBASE_AUTH_PHONE = 28;
     public static final int COMPONENT_TYPE_FIREBASE_CLOUD_MESSAGE = 30;
     public static final int COMPONENT_TYPE_FIREBASE_AUTH_GOOGLE_LOGIN = 31;
+    public static final int COMPONENT_TYPE_SUPABASE_AUTH = 51;
+    public static final int COMPONENT_TYPE_SUPABASE_DB = 52;
+    public static final int COMPONENT_TYPE_SUPABASE_REALTIME = 53;
+    public static final int COMPONENT_TYPE_SUPABASE_STORAGE = 54;
 
     public Gx classInfo;
     @Expose
@@ -186,6 +190,10 @@ public class ComponentBean extends CollapsibleBean implements Parcelable {
             case COMPONENT_TYPE_FIREBASE_AUTH_PHONE -> "PhoneAuth";
             case COMPONENT_TYPE_FIREBASE_CLOUD_MESSAGE -> "Cloud Message";
             case COMPONENT_TYPE_FIREBASE_AUTH_GOOGLE_LOGIN -> "Google Login";
+            case COMPONENT_TYPE_SUPABASE_AUTH -> "Supabase Auth";
+            case COMPONENT_TYPE_SUPABASE_DB -> "Supabase DB";
+            case COMPONENT_TYPE_SUPABASE_REALTIME -> "Supabase Realtime";
+            case COMPONENT_TYPE_SUPABASE_STORAGE -> "Supabase Storage";
             default -> ComponentsHandler.name(type);
         };
     }
@@ -222,6 +230,10 @@ public class ComponentBean extends CollapsibleBean implements Parcelable {
             case "FirebasePhoneAuth" -> COMPONENT_TYPE_FIREBASE_AUTH_PHONE;
             case "FirebaseCloudMessage" -> COMPONENT_TYPE_FIREBASE_CLOUD_MESSAGE;
             case "FirebaseGoogleLogin" -> COMPONENT_TYPE_FIREBASE_AUTH_GOOGLE_LOGIN;
+            case "SupabaseAuth" -> COMPONENT_TYPE_SUPABASE_AUTH;
+            case "SupabaseDB" -> COMPONENT_TYPE_SUPABASE_DB;
+            case "SupabaseRealtime" -> COMPONENT_TYPE_SUPABASE_REALTIME;
+            case "SupabaseStorage" -> COMPONENT_TYPE_SUPABASE_STORAGE;
             default -> ComponentsHandler.id(typeName);
         };
     }
@@ -258,6 +270,10 @@ public class ComponentBean extends CollapsibleBean implements Parcelable {
             case COMPONENT_TYPE_FIREBASE_AUTH_PHONE -> "FirebasePhoneAuth";
             case COMPONENT_TYPE_FIREBASE_CLOUD_MESSAGE -> "FirebaseCloudMessage";
             case COMPONENT_TYPE_FIREBASE_AUTH_GOOGLE_LOGIN -> "FirebaseGoogleLogin";
+            case COMPONENT_TYPE_SUPABASE_AUTH -> "SupabaseAuth";
+            case COMPONENT_TYPE_SUPABASE_DB -> "SupabaseDB";
+            case COMPONENT_TYPE_SUPABASE_REALTIME -> "SupabaseRealtime";
+            case COMPONENT_TYPE_SUPABASE_STORAGE -> "SupabaseStorage";
             default -> ComponentsHandler.typeName(type);
         };
     }
@@ -303,6 +319,10 @@ public class ComponentBean extends CollapsibleBean implements Parcelable {
             case COMPONENT_TYPE_FIREBASE_CLOUD_MESSAGE -> R.string.component_description_fb_fcm;
             case COMPONENT_TYPE_FIREBASE_AUTH_GOOGLE_LOGIN ->
                     R.string.component_description_fb_google;
+            case COMPONENT_TYPE_SUPABASE_AUTH -> R.string.design_library_firebase_description_about_firebase; // placeholder or default
+            case COMPONENT_TYPE_SUPABASE_DB -> R.string.design_library_firebase_description_about_firebase;
+            case COMPONENT_TYPE_SUPABASE_REALTIME -> R.string.design_library_firebase_description_about_firebase;
+            case COMPONENT_TYPE_SUPABASE_STORAGE -> R.string.design_library_firebase_description_about_firebase;
             default -> 0;
         };
     }
@@ -339,6 +359,10 @@ public class ComponentBean extends CollapsibleBean implements Parcelable {
             case COMPONENT_TYPE_FIREBASE_AUTH_PHONE -> R.drawable.ic_mtrl_firebase_sms;
             case COMPONENT_TYPE_FIREBASE_CLOUD_MESSAGE -> R.drawable.ic_mtrl_firebase_cloud;
             case COMPONENT_TYPE_FIREBASE_AUTH_GOOGLE_LOGIN -> R.drawable.ic_mtrl_firebase_google;
+            case COMPONENT_TYPE_SUPABASE_AUTH -> R.drawable.ic_mtrl_firebase_auth;
+            case COMPONENT_TYPE_SUPABASE_DB -> R.drawable.ic_mtrl_firebase_rtdb;
+            case COMPONENT_TYPE_SUPABASE_REALTIME -> R.drawable.ic_mtrl_firebase_cloud;
+            case COMPONENT_TYPE_SUPABASE_STORAGE -> R.drawable.ic_mtrl_firebase_storage;
             case 36 -> R.drawable.ic_mtrl_sync;
 
             default -> ComponentsHandler.icon(type);
@@ -377,6 +401,10 @@ public class ComponentBean extends CollapsibleBean implements Parcelable {
             case COMPONENT_TYPE_FIREBASE_AUTH_PHONE -> "FirebasePhoneAuth";
             case COMPONENT_TYPE_FIREBASE_CLOUD_MESSAGE -> "FirebaseCloudMessage";
             case COMPONENT_TYPE_FIREBASE_AUTH_GOOGLE_LOGIN -> "FirebaseGoogleLogin";
+            case COMPONENT_TYPE_SUPABASE_AUTH -> "SupabaseAuth";
+            case COMPONENT_TYPE_SUPABASE_DB -> "SupabaseDB";
+            case COMPONENT_TYPE_SUPABASE_REALTIME -> "SupabaseRealtime";
+            case COMPONENT_TYPE_SUPABASE_STORAGE -> "SupabaseStorage";
             default -> ComponentsHandler.getBuildClassById(type);
         };
         classInfo = new Gx(typeName);

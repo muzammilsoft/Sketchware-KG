@@ -355,6 +355,10 @@ public class ComponentsHandler {
     //structure : list.add(new ComponentBean(27));
     public static void add(ArrayList<ComponentBean> list) {
         list.add(new ComponentBean(36));
+        list.add(new ComponentBean(ComponentBean.COMPONENT_TYPE_SUPABASE_AUTH));
+        list.add(new ComponentBean(ComponentBean.COMPONENT_TYPE_SUPABASE_DB));
+        list.add(new ComponentBean(ComponentBean.COMPONENT_TYPE_SUPABASE_REALTIME));
+        list.add(new ComponentBean(ComponentBean.COMPONENT_TYPE_SUPABASE_STORAGE));
 
         for (int i = 0; i < cachedCustomComponents.size(); i++) {
             HashMap<String, Object> component = cachedCustomComponents.get(i);
