@@ -20,8 +20,10 @@ import com.besome.sketch.editor.manage.library.admob.ManageAdmobActivity;
 import com.besome.sketch.editor.manage.library.compat.ManageCompatActivity;
 import com.besome.sketch.editor.manage.library.firebase.ManageFirebaseActivity;
 import com.besome.sketch.editor.manage.library.googlemap.ManageGoogleMapActivity;
+import com.besome.sketch.editor.manage.library.supabase.ManageSupabaseActivity;
 import com.besome.sketch.editor.manage.library.material3.Material3LibraryActivity;
 import com.besome.sketch.editor.manage.library.material3.Material3LibraryItemView;
+import pro.sketchware.supabase.SupabaseConfig;
 import com.besome.sketch.lib.base.BaseAppCompatActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -49,6 +51,7 @@ public class ManageLibraryActivity extends BaseAppCompatActivity implements View
     private final int REQUEST_CODE_GOOGLE_MAPS_ACTIVITY = 241;
     private final int REQUEST_CODE_MATERIAL3_ACTIVITY = 242;
     private final int REQUEST_CODE_CUSTOM_ITEM_LIBRARY_ACTIVITY = 243;
+    private final int REQUEST_CODE_SUPABASE_ACTIVITY = 244;
 
     private String sc_id;
     private LinearLayout libraryItemLayout;
@@ -57,6 +60,7 @@ public class ManageLibraryActivity extends BaseAppCompatActivity implements View
     private ProjectLibraryBean compatLibraryBean;
     private ProjectLibraryBean admobLibraryBean;
     private ProjectLibraryBean googleMapLibraryBean;
+    private ProjectLibraryBean supabaseLibraryBean;
 
     private String originalFirebaseUseYn = "N";
     private String originalCompatUseYn = "N";
@@ -129,6 +133,8 @@ public class ManageLibraryActivity extends BaseAppCompatActivity implements View
                 case ProjectLibraryBean.PROJECT_LIB_TYPE_ADMOB -> admobLibraryBean = libraryBean;
                 case ProjectLibraryBean.PROJECT_LIB_TYPE_GOOGLE_MAP ->
                         googleMapLibraryBean = libraryBean;
+                case ProjectLibraryBean.PROJECT_LIB_TYPE_SUPABASE ->
+                        supabaseLibraryBean = libraryBean;
             }
         }
 
@@ -174,6 +180,14 @@ public class ManageLibraryActivity extends BaseAppCompatActivity implements View
         startActivityForResult(intent, REQUEST_CODE_GOOGLE_MAPS_ACTIVITY);
     }
 
+    private void toSupabaseActivity(ProjectLibraryBean libraryBean) {
+        Intent intent = new Intent(getApplicationContext(), ManageSupabaseActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra("sc_id", sc_id);
+        intent.putExtra("supabase", libraryBean);
+        startActivityForResult(intent, REQUEST_CODE_SUPABASE_ACTIVITY);
+    }
+
     private void launchCustomActivity(Class<? extends Activity> toLaunch) {
         Intent intent = new Intent(getApplicationContext(), toLaunch);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -202,6 +216,7 @@ public class ManageLibraryActivity extends BaseAppCompatActivity implements View
         jC.c(sc_id).a(admobLibraryBean);
         jC.c(sc_id).d(googleMapLibraryBean);
         jC.c(sc_id).k();
+        SupabaseConfig.save(sc_id, supabaseLibraryBean);
         jC.b(sc_id).a(jC.c(sc_id));
         jC.a(sc_id).a(jC.b(sc_id));
         jC.a(sc_id).a(firebaseLibraryBean);
@@ -235,6 +250,10 @@ public class ManageLibraryActivity extends BaseAppCompatActivity implements View
 
                 case REQUEST_CODE_GOOGLE_MAPS_ACTIVITY:
                     initializeLibrary(data.getParcelableExtra("google_map"));
+                    break;
+
+                case REQUEST_CODE_SUPABASE_ACTIVITY:
+                    initializeLibrary(data.getParcelableExtra("supabase"));
                     break;
 
                 case REQUEST_CODE_CUSTOM_ITEM_LIBRARY_ACTIVITY:
@@ -279,6 +298,10 @@ public class ManageLibraryActivity extends BaseAppCompatActivity implements View
 
                     case ProjectLibraryBean.PROJECT_LIB_TYPE_GOOGLE_MAP:
                         toGoogleMapActivity(googleMapLibraryBean);
+                        break;
+
+                    case ProjectLibraryBean.PROJECT_LIB_TYPE_SUPABASE:
+                        toSupabaseActivity(supabaseLibraryBean);
                         break;
 
                     case ProjectLibraryBean.PROJECT_LIB_TYPE_LOCAL_LIB:
@@ -360,8 +383,11 @@ public class ManageLibraryActivity extends BaseAppCompatActivity implements View
                 googleMapLibraryBean = new ProjectLibraryBean(ProjectLibraryBean.PROJECT_LIB_TYPE_GOOGLE_MAP);
             }
             originalGoogleMapUseYn = googleMapLibraryBean.useYn;
+
+            supabaseLibraryBean = SupabaseConfig.load(sc_id);
         } else {
             firebaseLibraryBean = savedInstanceState.getParcelable("firebase");
+            supabaseLibraryBean = savedInstanceState.getParcelable("supabase");
             originalFirebaseUseYn = savedInstanceState.getString("originalFirebaseUseYn");
             compatLibraryBean = savedInstanceState.getParcelable("compat");
             originalCompatUseYn = savedInstanceState.getString("originalCompatUseYn");
@@ -376,7 +402,8 @@ public class ManageLibraryActivity extends BaseAppCompatActivity implements View
         addCustomLibraryItem(ProjectLibraryBean.PROJECT_LIB_TYPE_MATERIAL3, basicCategory);
         addLibraryItem(firebaseLibraryBean, basicCategory);
         addLibraryItem(admobLibraryBean, basicCategory);
-        addLibraryItem(googleMapLibraryBean, basicCategory, false);
+        addLibraryItem(googleMapLibraryBean, basicCategory);
+        addLibraryItem(supabaseLibraryBean, basicCategory, false);
 
         LibraryCategoryView externalCategory = addCategoryItem("External libraries");
         addLibraryItem(new ProjectLibraryBean(ProjectLibraryBean.PROJECT_LIB_TYPE_LOCAL_LIB), externalCategory);
@@ -401,6 +428,7 @@ public class ManageLibraryActivity extends BaseAppCompatActivity implements View
         outState.putParcelable("compat", compatLibraryBean);
         outState.putParcelable("admob", admobLibraryBean);
         outState.putParcelable("google_map", googleMapLibraryBean);
+        outState.putParcelable("supabase", supabaseLibraryBean);
         outState.putString("originalFirebaseUseYn", originalFirebaseUseYn);
         outState.putString("originalCompatUseYn", originalCompatUseYn);
         outState.putString("originalAdmobUseYn", originalAdmobUseYn);

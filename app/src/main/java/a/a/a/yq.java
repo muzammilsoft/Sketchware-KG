@@ -595,6 +595,13 @@ public class yq {
                             N.x.isFCMUsed = true;
                     case ComponentBean.COMPONENT_TYPE_FIREBASE_AUTH_GOOGLE_LOGIN ->
                             N.x.isFBGoogleUsed = true;
+                    case ComponentBean.COMPONENT_TYPE_SUPABASE_AUTH,
+                         ComponentBean.COMPONENT_TYPE_SUPABASE_DB,
+                         ComponentBean.COMPONENT_TYPE_SUPABASE_REALTIME,
+                         ComponentBean.COMPONENT_TYPE_SUPABASE_STORAGE -> {
+                        N.addPermission(activity.getActivityName(), jq.PERMISSION_INTERNET);
+                        N.addPermission(activity.getActivityName(), jq.PERMISSION_ACCESS_NETWORK_STATE);
+                    }
                     default -> {
                     }
                 }

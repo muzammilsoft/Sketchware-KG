@@ -240,6 +240,9 @@
             android:name="com.besome.sketch.editor.manage.library.firebase.ManageFirebaseActivity"
             android:configChanges="orientation|screenSize" />
         <activity
+            android:name="com.besome.sketch.editor.manage.library.supabase.ManageSupabaseActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
             android:name="com.besome.sketch.editor.manage.library.admob.ManageAdmobActivity"
             android:configChanges="orientation|screenSize" />
         <activity

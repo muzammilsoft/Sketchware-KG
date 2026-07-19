@@ -1102,6 +1102,29 @@ public class ExtraPaletteBlock {
                     logicEditor.a(" ", "firebasestorageDownloadFile");
                     logicEditor.a(" ", "firebasestorageDelete");
                 }
+                if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_SUPABASE_AUTH)) {
+                    logicEditor.a("Supabase Auth", getTitleBgColor());
+                    logicEditor.a(" ", "supabaseAuthSignUp");
+                    logicEditor.a(" ", "supabaseAuthLogin");
+                    logicEditor.a(" ", "supabaseAuthLogout");
+                    logicEditor.a("s", "supabaseAuthGetUser");
+                }
+                if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_SUPABASE_DB)) {
+                    logicEditor.a("Supabase DB", getTitleBgColor());
+                    logicEditor.a(" ", "supabaseDbInsert");
+                    logicEditor.a(" ", "supabaseDbSelect");
+                    logicEditor.a(" ", "supabaseDbUpdate");
+                    logicEditor.a(" ", "supabaseDbDelete");
+                }
+                if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_SUPABASE_REALTIME)) {
+                    logicEditor.a("Supabase Realtime", getTitleBgColor());
+                    logicEditor.a(" ", "supabaseRealtimeListen");
+                }
+                if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_SUPABASE_STORAGE)) {
+                    logicEditor.a("Supabase Storage", getTitleBgColor());
+                    logicEditor.a(" ", "supabaseStorageUpload");
+                    logicEditor.a(" ", "supabaseStorageDownload");
+                }
                 if (extraBlocks.isComponentUsed(ComponentBean.COMPONENT_TYPE_CAMERA)) {
                     logicEditor.a("Camera", getTitleBgColor());
                     logicEditor.a(" ", "camerastarttakepicture");

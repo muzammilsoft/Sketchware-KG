@@ -114,7 +114,7 @@ public class ProjectLibraryBean implements Parcelable {
             case 3 -> R.string.design_library_description_google_map;
             case 4 -> R.string.text_subtitle_menu_local_library;
             case 5 -> R.string.design_drawer_menu_nativelibs_subtitle;
-            case 8 -> R.string.design_library_description_firebase; // using description string resource fallback
+            case 8 -> R.string.design_library_supabase_description;
             default -> 0;
         };
     }
@@ -127,7 +127,7 @@ public class ProjectLibraryBean implements Parcelable {
             case 3 -> R.string.design_library_google_map_title;
             case 4 -> R.string.text_title_menu_local_library;
             case 5 -> R.string.design_drawer_menu_nativelibs;
-            case 8 -> R.string.design_library_firebase_title_firebase; // fallback title resource
+            case 8 -> R.string.design_library_supabase_title;
             default -> 0;
         };
     }
