@@ -73,6 +73,26 @@ public class ExtraBlocks {
         //RewardedVideoAd
         arrayList.add(addBlock("rewardedVideoAdLoad", " ", "", "RewardedAd.load(%2$s.this, _reward_ad_unit_id, new AdRequest.Builder().build(), _%1$s_rewarded_ad_load_callback);", "#2ca5e2", "%m.videoad load in %m.activity"));
         arrayList.add(addBlock("rewardedVideoAdShow", " ", "", "%1s.show(%2$s.this, _%1$s_on_user_earned_reward_listener);", "#2ca5e2", "%m.videoad show in %m.activity"));
+
+        // Supabase Auth Blocks
+        arrayList.add(addBlock("supabaseAuthSignUp", " ", "", "pro.sketchware.supabase.SupabaseClient.getInstance().signUp(%1$s, %2$s);", "#3b4472", "Supabase Auth: Sign Up with Email %s Password %s"));
+        arrayList.add(addBlock("supabaseAuthLogin", " ", "", "pro.sketchware.supabase.SupabaseClient.getInstance().signIn(%1$s, %2$s);", "#3b4472", "Supabase Auth: Log In with Email %s Password %s"));
+        arrayList.add(addBlock("supabaseAuthLogout", " ", "", "pro.sketchware.supabase.SupabaseClient.getInstance().signOut();", "#3b4472", "Supabase Auth: Log Out"));
+        arrayList.add(addBlock("supabaseAuthGetUser", "s", "", "pro.sketchware.supabase.SupabaseClient.getInstance().getCurrentUser()", "#3b4472", "Supabase Auth: Current User Email"));
+
+        // Supabase Database Blocks
+        arrayList.add(addBlock("supabaseDbInsert", " ", "", "pro.sketchware.supabase.SupabaseClient.getInstance().insertRow(%1$s, %2$s);", "#3f51b5", "Supabase DB: Insert row in table %s from Map %m.varMap"));
+        arrayList.add(addBlock("supabaseDbSelect", " ", "", "pro.sketchware.supabase.SupabaseClient.getInstance().selectRows(%1$s, %2$s);", "#3f51b5", "Supabase DB: Get rows from table %s to ListMap %m.listMap"));
+        arrayList.add(addBlock("supabaseDbUpdate", " ", "", "pro.sketchware.supabase.SupabaseClient.getInstance().updateRow(%1$s, %2$s, %3$s, %4$s);", "#3f51b5", "Supabase DB: Update table %s row key %s value %s from Map %m.varMap"));
+        arrayList.add(addBlock("supabaseDbDelete", " ", "", "pro.sketchware.supabase.SupabaseClient.getInstance().deleteRow(%1$s, %2$s, %3$s);", "#3f51b5", "Supabase DB: Delete from table %s where key %s equals %s"));
+
+        // Supabase Realtime Blocks
+        arrayList.add(addBlock("supabaseRealtimeListen", " ", "", "pro.sketchware.supabase.SupabaseClient.getInstance().listenTable(%1$s);", "#455a64", "Supabase Realtime: Listen to table %s changes"));
+
+        // Supabase Storage Blocks
+        arrayList.add(addBlock("supabaseStorageUpload", " ", "", "pro.sketchware.supabase.SupabaseClient.getInstance().uploadFile(%1$s, %2$s, %3$s);", "#009688", "Supabase Storage: Upload file %s to bucket %s destination %s"));
+        arrayList.add(addBlock("supabaseStorageDownload", " ", "", "pro.sketchware.supabase.SupabaseClient.getInstance().downloadFile(%1$s, %2$s, %3$s);", "#009688", "Supabase Storage: Download from bucket %s source %s to destination %s"));
+
         // Reyaansh's Custom Inbuilt Utility Blocks Library - 300 Blocks
                 
         // ─── DEVICE / SYSTEM ───────────────────────────────────────────────────────

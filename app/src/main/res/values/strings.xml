@@ -2954,4 +2954,10 @@ Please try again later"</string>
     <string name="store_whats_new">What\'s new</string>
     <string name="export_project_title_export_aab">Export AAB (Android App Bundle)</string>
     <string name="export_project_button_export_aab">Export AAB</string>
+    <string name="design_library_supabase_title">Supabase</string>
+    <string name="design_library_supabase_title_manager">Supabase Manager</string>
+    <string name="design_library_supabase_title_url">Project URL (SUPABASE_URL)</string>
+    <string name="design_library_supabase_title_anon_key">Anonymous Public Key (SUPABASE_ANON_KEY)</string>
+    <string name="design_library_supabase_title_service_key">Service Role Key (SUPABASE_SERVICE_ROLE_KEY)</string>
+    <string name="design_library_supabase_description">Supabase provides scalable database, auth, realtime, and storage services built on PostgreSQL.</string>
 </resources>
