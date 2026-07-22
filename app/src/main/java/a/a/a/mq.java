@@ -89,10 +89,6 @@ public class mq {
                     "PhoneAuthProvider.OnVerificationStateChangedCallbacks";
             case ComponentBean.COMPONENT_TYPE_FIREBASE_CLOUD_MESSAGE -> "FirebaseCloudMessage";
             case ComponentBean.COMPONENT_TYPE_FIREBASE_AUTH_GOOGLE_LOGIN -> "GoogleSignInClient";
-            case ComponentBean.COMPONENT_TYPE_SUPABASE_AUTH -> "SupabaseClient.SupabaseAuth";
-            case ComponentBean.COMPONENT_TYPE_SUPABASE_DB -> "SupabaseClient.SupabaseDB";
-            case ComponentBean.COMPONENT_TYPE_SUPABASE_REALTIME -> "SupabaseClient.SupabaseRealtime";
-            case ComponentBean.COMPONENT_TYPE_SUPABASE_STORAGE -> "SupabaseClient.SupabaseStorage";
             default -> ComponentsHandler.var(componentId);
         };
     }
@@ -203,10 +199,6 @@ public class mq {
             case "asynctask" -> "AsyncTask";
             case "activity" -> "Context";
             case "otpview" -> "OTPView";
-            case "supabaseauth", "SupabaseAuth" -> "SupabaseClient.SupabaseAuth";
-            case "supabasedb", "SupabaseDB" -> "SupabaseClient.SupabaseDB";
-            case "supabaserealtime", "SupabaseRealtime" -> "SupabaseClient.SupabaseRealtime";
-            case "supabasestorage", "SupabaseStorage" -> "SupabaseClient.SupabaseStorage";
             case "lottie" -> "LottieAnimation";
             case "phoneauth" -> "FirebasePhoneAuth";
             case "codeview" -> "CodeView";
@@ -253,14 +245,6 @@ public class mq {
         Material3LibraryManager materialLibraryManager = new Material3LibraryManager(scId);
 
         switch (name) {
-            case "SupabaseClient.SupabaseAuth":
-            case "SupabaseClient.SupabaseDB":
-            case "SupabaseClient.SupabaseRealtime":
-            case "SupabaseClient.SupabaseStorage":
-            case "SupabaseClient":
-            case "SupabaseCallback":
-                return importList;
-
             case "Map":
                 importList.add("java.util.HashMap");
                 return importList;
