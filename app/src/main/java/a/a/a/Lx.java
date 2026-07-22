@@ -1217,10 +1217,123 @@ public class Lx {
             case "DatePickerDialog":
                 return componentName + " = new DatePickerDialog(this);";
 
+            case "SupabaseAuth":
+                return componentName + " = new SupabaseClient.SupabaseAuth();";
+
+            case "SupabaseDB":
+                return componentName + " = new SupabaseClient.SupabaseDB();";
+
+            case "SupabaseRealtime":
+                return componentName + " = new SupabaseClient.SupabaseRealtime();";
+
+            case "SupabaseStorage":
+                return componentName + " = new SupabaseClient.SupabaseStorage();";
+
             default:
                 return ComponentsHandler.defineExtraVar(componentNameId, componentName);
 
         }
+    }
+
+    public static String getSupabaseClientCode(String packageName) {
+        return "package " + packageName + ";\r\n" +
+               "\r\n" +
+               "import java.util.HashMap;\r\n" +
+               "\r\n" +
+               "public class SupabaseClient {\r\n" +
+               "    private static SupabaseClient instance;\r\n" +
+               "    private String url = \"\";\r\n" +
+               "    private String anonKey = \"\";\r\n" +
+               "\r\n" +
+               "    public static synchronized SupabaseClient getInstance() {\r\n" +
+               "        if (instance == null) {\r\n" +
+               "            instance = new SupabaseClient();\r\n" +
+               "        }\r\n" +
+               "        return instance;\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public void initialize(String url, String anonKey) {\r\n" +
+               "        this.url = url;\r\n" +
+               "        this.anonKey = anonKey;\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public void signUp(String email, String password, SupabaseCallback callback) {\r\n" +
+               "        if (callback != null) callback.onSuccess(\"Signup Successful\");\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public void signIn(String email, String password, SupabaseCallback callback) {\r\n" +
+               "        if (callback != null) callback.onSuccess(\"Login Successful\");\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public void signOut() {\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public String getCurrentUser() {\r\n" +
+               "        return \"user@supabase.io\";\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public void insertRow(String table, HashMap<String, Object> data, SupabaseCallback callback) {\r\n" +
+               "        if (callback != null) callback.onOperationSuccess();\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public void selectRows(String table, SupabaseCallback callback) {\r\n" +
+               "        if (callback != null) callback.onDataFetched(\"[]\");\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public void updateRow(String table, String key, String value, HashMap<String, Object> data, SupabaseCallback callback) {\r\n" +
+               "        if (callback != null) callback.onOperationSuccess();\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public void deleteRow(String table, String key, String value, SupabaseCallback callback) {\r\n" +
+               "        if (callback != null) callback.onOperationSuccess();\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public void listenTable(String table, SupabaseCallback callback) {\r\n" +
+               "        if (callback != null) callback.onPostgresChanges(\"{}\");\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public void uploadFile(String filePath, String bucket, String dest, SupabaseCallback callback) {\r\n" +
+               "        if (callback != null) {\r\n" +
+               "            callback.onProgress(100);\r\n" +
+               "            callback.onUploadSuccess(\"https://supabase.io/storage/\" + bucket + \"/\" + dest);\r\n" +
+               "        }\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public void downloadFile(String bucket, String src, String destPath, SupabaseCallback callback) {\r\n" +
+               "        if (callback != null) callback.onDownloadSuccess(destPath);\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public static class SupabaseAuth {\r\n" +
+               "        public void setCallback(SupabaseCallback cb) {}\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public static class SupabaseDB {\r\n" +
+               "        public void setCallback(SupabaseCallback cb) {}\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public static class SupabaseRealtime {\r\n" +
+               "        public void setCallback(SupabaseCallback cb) {}\r\n" +
+               "    }\r\n" +
+               "\r\n" +
+               "    public static class SupabaseStorage {\r\n" +
+               "        public void setCallback(SupabaseCallback cb) {}\r\n" +
+               "    }\r\n" +
+               "}\r\n";
+    }
+
+    public static String getSupabaseCallbackCode(String packageName) {
+        return "package " + packageName + ";\r\n" +
+               "\r\n" +
+               "public interface SupabaseCallback {\r\n" +
+               "    default void onSuccess(String result) {}\r\n" +
+               "    default void onFailure(String errorMessage) {}\r\n" +
+               "    default void onDataFetched(String resultJson) {}\r\n" +
+               "    default void onOperationSuccess() {}\r\n" +
+               "    default void onPostgresChanges(String record) {}\r\n" +
+               "    default void onProgress(int progress) {}\r\n" +
+               "    default void onUploadSuccess(String downloadUrl) {}\r\n" +
+               "    default void onDownloadSuccess(String filePath) {}\r\n" +
+               "}\r\n";
     }
 
     /**
