@@ -306,7 +306,7 @@ public class MainActivity extends BasePermissionAppCompatActivity {
 
     private void maybeShowAdsNoticeOnce() {
         if (adsNoticeDialog != null && adsNoticeDialog.isShowing()) return;
-        boolean shown = false;
+        boolean shown = getSharedPreferences(PREFS_ADS_NOTICE, MODE_PRIVATE).getBoolean(KEY_ADS_NOTICE_SHOWN, false);
         if (shown) return;
 
         View content = getLayoutInflater().inflate(R.layout.bottomsheet_ads_notice, null);
@@ -319,10 +319,13 @@ public class MainActivity extends BasePermissionAppCompatActivity {
 
         View close = content.findViewById(R.id.close);
         View donate = content.findViewById(R.id.donate);
+        final com.google.android.material.checkbox.MaterialCheckBox cbDontShow = content.findViewById(R.id.cb_dont_show);
 
         close.setOnClickListener(v -> {
-            getSharedPreferences(PREFS_ADS_NOTICE, MODE_PRIVATE)
-                    .edit().putBoolean(KEY_ADS_NOTICE_SHOWN, true).apply();
+            if (cbDontShow != null && cbDontShow.isChecked()) {
+                getSharedPreferences(PREFS_ADS_NOTICE, MODE_PRIVATE)
+                        .edit().putBoolean(KEY_ADS_NOTICE_SHOWN, true).apply();
+            }
             adsNoticeDialog.dismiss();
         });
 
@@ -331,8 +334,10 @@ public class MainActivity extends BasePermissionAppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(TranslationFunction.getString(this, R.string.link_donation_url)));
                 startActivity(intent);
             } catch (Exception ignored) { }
-            getSharedPreferences(PREFS_ADS_NOTICE, MODE_PRIVATE)
-                    .edit().putBoolean(KEY_ADS_NOTICE_SHOWN, true).apply();
+            if (cbDontShow != null && cbDontShow.isChecked()) {
+                getSharedPreferences(PREFS_ADS_NOTICE, MODE_PRIVATE)
+                        .edit().putBoolean(KEY_ADS_NOTICE_SHOWN, true).apply();
+            }
             adsNoticeDialog.dismiss();
         });
 

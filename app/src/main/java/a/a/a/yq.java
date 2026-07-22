@@ -858,6 +858,31 @@ public class yq {
                     Lx.j(Lx.h(packageName), false)));
         }
 
+        boolean isSupabaseUsed = false;
+        for (ProjectFileBean file : projectDataManager.b()) {
+            for (ComponentBean component : projectDataManager.e(file.getJavaName())) {
+                if (component.type == ComponentBean.COMPONENT_TYPE_SUPABASE_AUTH
+                    || component.type == ComponentBean.COMPONENT_TYPE_SUPABASE_DB
+                    || component.type == ComponentBean.COMPONENT_TYPE_SUPABASE_REALTIME
+                    || component.type == ComponentBean.COMPONENT_TYPE_SUPABASE_STORAGE) {
+                    isSupabaseUsed = true;
+                    break;
+                }
+            }
+            if (isSupabaseUsed) break;
+        }
+
+        if (isSupabaseUsed) {
+            if (!javaFiles.contains(new File(javaDir + "SupabaseClient.java"))) {
+                srcCodeBeans.add(new SrcCodeBean("SupabaseClient.java",
+                        Lx.getSupabaseClientCode(packageName)));
+            }
+            if (!javaFiles.contains(new File(javaDir + "SupabaseCallback.java"))) {
+                srcCodeBeans.add(new SrcCodeBean("SupabaseCallback.java",
+                        Lx.getSupabaseCallbackCode(packageName)));
+            }
+        }
+
         if (!FileUtil.isExistFile(javaDir + "RequestNetworkController.java") && N.isHttp3Used) {
             srcCodeBeans.add(new SrcCodeBean("RequestNetworkController.java",
                     Lx.j(Lx.g(packageName), false)));
