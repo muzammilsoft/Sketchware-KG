@@ -859,7 +859,7 @@ public class yq {
         }
 
         boolean isSupabaseUsed = false;
-        for (ProjectFileBean file : projectDataManager.b()) {
+        for (ProjectFileBean file : projectFileManager.b()) {
             for (ComponentBean component : projectDataManager.e(file.getJavaName())) {
                 if (component.type == ComponentBean.COMPONENT_TYPE_SUPABASE_AUTH
                     || component.type == ComponentBean.COMPONENT_TYPE_SUPABASE_DB
