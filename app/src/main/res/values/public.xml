@@ -258,5 +258,4 @@
     <public name="picker_color_title_delete_all_custom_color" id="0x7f0e071b" type="string" />
     <public name="picker_color_title_delete_custom_color" id="0x7f0e071c" type="string" />
     <public name="root_spec_common_when" id="0x7f0e082a" type="string" />
-    <public name="title_activity_icon_creator" id="0x7f0e082b" type="string" />
 </resources>

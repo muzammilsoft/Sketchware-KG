@@ -1039,8 +1039,23 @@ public class Jx {
             }
         }
         ArrayList<ComponentBean> componentBeans = projectDataManager.e(projectFileBean.getJavaName());
+        boolean isSupabaseUsedInActivity = false;
         for (ComponentBean componentBean : componentBeans) {
             componentInitializers.add(getComponentBeanInitializer(componentBean));
+            if (componentBean.type == ComponentBean.COMPONENT_TYPE_SUPABASE_AUTH
+                || componentBean.type == ComponentBean.COMPONENT_TYPE_SUPABASE_DB
+                || componentBean.type == ComponentBean.COMPONENT_TYPE_SUPABASE_REALTIME
+                || componentBean.type == ComponentBean.COMPONENT_TYPE_SUPABASE_STORAGE) {
+                isSupabaseUsedInActivity = true;
+            }
+        }
+        if (isSupabaseUsedInActivity) {
+            com.besome.sketch.beans.ProjectLibraryBean supabaseConfig = pro.sketchware.supabase.SupabaseConfig.load(projectDataManager.a);
+            if (supabaseConfig != null && "Y".equals(supabaseConfig.useYn)) {
+                String url = supabaseConfig.data != null ? supabaseConfig.data : "";
+                String anonKey = supabaseConfig.reserved1 != null ? supabaseConfig.reserved1 : "";
+                componentInitializers.add(0, "SupabaseClient.getInstance().initialize(\"" + url + "\", \"" + anonKey + "\");");
+            }
         }
     }
 

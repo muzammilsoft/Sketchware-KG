@@ -31,7 +31,7 @@ public class ManageSupabaseActivity extends BaseAppCompatActivity implements Vie
     private String scId;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manage_library_manage_supabase);
 

@@ -146,6 +146,18 @@ public class ManageEvent {
             listeners.add("authUpdateProfileComplete");
             listeners.add("googleSignInListener");
         }
+        if (gx.a("SupabaseAuth")) {
+            listeners.add("SupabaseAuthListener");
+        }
+        if (gx.a("SupabaseDB")) {
+            listeners.add("SupabaseDBListener");
+        }
+        if (gx.a("SupabaseRealtime")) {
+            listeners.add("SupabaseRealtimeListener");
+        }
+        if (gx.a("SupabaseStorage")) {
+            listeners.add("SupabaseStorageListener");
+        }
         if (gx.a("FirebasePhoneAuth")) {
             listeners.add("OnVerificationStateChangedListener");
         }
@@ -160,6 +172,26 @@ public class ManageEvent {
      */
     public static void addEventsForListener(String eventName, ArrayList<String> list) {
         switch (eventName) {
+            case "SupabaseAuthListener":
+                list.add("onLoginSuccess");
+                list.add("onLoginFailed");
+                list.add("onSignupSuccess");
+                list.add("onSignupFailed");
+                break;
+            case "SupabaseDBListener":
+                list.add("onDataFetched");
+                list.add("onOperationSuccess");
+                list.add("onOperationFailed");
+                break;
+            case "SupabaseRealtimeListener":
+                list.add("onPostgresChanges");
+                break;
+            case "SupabaseStorageListener":
+                list.add("onUploadProgress");
+                list.add("onUploadSuccess");
+                list.add("onDownloadSuccess");
+                list.add("onStorageError");
+                break;
             case "rewardedAdLoadCallback":
                 list.add("onRewardAdLoaded");
                 list.add("onRewardAdFailedToLoad");
@@ -658,6 +690,38 @@ public class ManageEvent {
                         "}";
             }
             case "onUserEarnedReward" -> eventLogic;
+            case "onLoginSuccess", "onSignupSuccess" -> "@Override\r\n" +
+                    "public void onSuccess(String _result) {\r\n" +
+                    eventLogic + "\r\n" +
+                    "}";
+            case "onLoginFailed", "onSignupFailed", "onOperationFailed", "onStorageError" -> "@Override\r\n" +
+                    "public void onFailure(String _errorMessage) {\r\n" +
+                    eventLogic + "\r\n" +
+                    "}";
+            case "onDataFetched" -> "@Override\r\n" +
+                    "public void onDataFetched(String _resultJson) {\r\n" +
+                    eventLogic + "\r\n" +
+                    "}";
+            case "onOperationSuccess" -> "@Override\r\n" +
+                    "public void onOperationSuccess() {\r\n" +
+                    eventLogic + "\r\n" +
+                    "}";
+            case "onPostgresChanges" -> "@Override\r\n" +
+                    "public void onPostgresChanges(String _record) {\r\n" +
+                    eventLogic + "\r\n" +
+                    "}";
+            case "onUploadProgress" -> "@Override\r\n" +
+                    "public void onProgress(int _progress) {\r\n" +
+                    eventLogic + "\r\n" +
+                    "}";
+            case "onUploadSuccess" -> "@Override\r\n" +
+                    "public void onUploadSuccess(String _downloadUrl) {\r\n" +
+                    eventLogic + "\r\n" +
+                    "}";
+            case "onDownloadSuccess" -> "@Override\r\n" +
+                    "public void onDownloadSuccess(String _filePath) {\r\n" +
+                    eventLogic + "\r\n" +
+                    "}";
             default -> EventsHandler.getEventCode(targetId, eventName, eventLogic);
         };
     }
@@ -667,6 +731,26 @@ public class ManageEvent {
      */
     public static String g(String listenerName, String targetId, String listenerLogic) {
         return switch (listenerName) {
+            case "SupabaseAuthListener" ->
+                    targetId + "_auth_listener = new SupabaseCallback() {\r\n" +
+                            listenerLogic + "\r\n" +
+                            "};\r\n" +
+                            targetId + ".setCallback(" + targetId + "_auth_listener);";
+            case "SupabaseDBListener" ->
+                    targetId + "_db_listener = new SupabaseCallback() {\r\n" +
+                            listenerLogic + "\r\n" +
+                            "};\r\n" +
+                            targetId + ".setCallback(" + targetId + "_db_listener);";
+            case "SupabaseRealtimeListener" ->
+                    targetId + "_realtime_listener = new SupabaseCallback() {\r\n" +
+                            listenerLogic + "\r\n" +
+                            "};\r\n" +
+                            targetId + ".setCallback(" + targetId + "_realtime_listener);";
+            case "SupabaseStorageListener" ->
+                    targetId + "_storage_listener = new SupabaseCallback() {\r\n" +
+                            listenerLogic + "\r\n" +
+                            "};\r\n" +
+                            targetId + ".setCallback(" + targetId + "_storage_listener);";
             case "OnCompletionListener" ->
                     targetId + ".setOnCompletionListener(new MediaPlayer.OnCompletionListener() {\r\n" +
                             listenerLogic + "\r\n" +
@@ -879,6 +963,26 @@ public class ManageEvent {
     }
 
     public static void addExtraComponentEvents(Gx gx, ArrayList<String> list) {
+        if (gx.a("SupabaseAuth")) {
+            list.add("onLoginSuccess");
+            list.add("onLoginFailed");
+            list.add("onSignupSuccess");
+            list.add("onSignupFailed");
+        }
+        if (gx.a("SupabaseDB")) {
+            list.add("onDataFetched");
+            list.add("onOperationSuccess");
+            list.add("onOperationFailed");
+        }
+        if (gx.a("SupabaseRealtime")) {
+            list.add("onPostgresChanges");
+        }
+        if (gx.a("SupabaseStorage")) {
+            list.add("onUploadProgress");
+            list.add("onUploadSuccess");
+            list.add("onDownloadSuccess");
+            list.add("onStorageError");
+        }
         if (gx.a("RewardedVideoAd")) {
             list.add("onRewardAdLoaded");
             list.add("onRewardAdFailedToLoad");
@@ -923,6 +1027,14 @@ public class ManageEvent {
 
     public static String i(String targetId, String eventName) {
         return switch (eventName) {
+            case "onLoginSuccess", "onSignupSuccess" -> "When " + targetId + " " + eventName + " %s.result";
+            case "onLoginFailed", "onSignupFailed", "onOperationFailed", "onStorageError" -> "When " + targetId + " " + eventName + " %s.errorMessage";
+            case "onDataFetched" -> "When " + targetId + " onDataFetched %s.resultJson";
+            case "onPostgresChanges" -> "When " + targetId + " onPostgresChanges %s.record";
+            case "onUploadProgress" -> "When " + targetId + " onUploadProgress %d.progress";
+            case "onUploadSuccess" -> "When " + targetId + " onUploadSuccess %s.downloadUrl";
+            case "onDownloadSuccess" -> "When " + targetId + " onDownloadSuccess %s.filePath";
+            case "onOperationSuccess" -> "When " + targetId + " onOperationSuccess";
             case "onUpdateProfileComplete", "onEmailVerificationSent", "onDeleteUserComplete",
                  "onUpdateEmailComplete", "onGoogleSignIn", "onUpdatePasswordComplete",
                  "signInWithPhoneAuthComplete" ->
