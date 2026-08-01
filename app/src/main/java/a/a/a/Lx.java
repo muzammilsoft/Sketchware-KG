@@ -1324,15 +1324,15 @@ public class Lx {
     public static String getSupabaseCallbackCode(String packageName) {
         return "package " + packageName + ";\r\n" +
                "\r\n" +
-               "public interface SupabaseCallback {\r\n" +
-               "    default void onSuccess(String result) {}\r\n" +
-               "    default void onFailure(String errorMessage) {}\r\n" +
-               "    default void onDataFetched(String resultJson) {}\r\n" +
-               "    default void onOperationSuccess() {}\r\n" +
-               "    default void onPostgresChanges(String record) {}\r\n" +
-               "    default void onProgress(int progress) {}\r\n" +
-               "    default void onUploadSuccess(String downloadUrl) {}\r\n" +
-               "    default void onDownloadSuccess(String filePath) {}\r\n" +
+               "public abstract class SupabaseCallback {\r\n" +
+               "    public void onSuccess(String result) {}\r\n" +
+               "    public void onFailure(String errorMessage) {}\r\n" +
+               "    public void onDataFetched(String resultJson) {}\r\n" +
+               "    public void onOperationSuccess() {}\r\n" +
+               "    public void onPostgresChanges(String record) {}\r\n" +
+               "    public void onProgress(int progress) {}\r\n" +
+               "    public void onUploadSuccess(String downloadUrl) {}\r\n" +
+               "    public void onDownloadSuccess(String filePath) {}\r\n" +
                "}\r\n";
     }
 

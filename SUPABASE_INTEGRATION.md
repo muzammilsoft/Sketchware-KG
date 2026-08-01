@@ -42,19 +42,19 @@ To ensure maximum build stability, zero duplicate class conflicts, and immunenes
 Below is the code mapping reference for generated Java files.
 
 ### `SupabaseCallback.java`
-An asynchronous listener interface used by all Supabase components:
+An asynchronous listener abstract class used by all Supabase components to ensure Java 1.7 source level compatibility:
 ```java
 package <user_package_name>;
 
-public interface SupabaseCallback {
-    default void onSuccess(String result) {}
-    default void onFailure(String errorMessage) {}
-    default void onDataFetched(String resultJson) {}
-    default void onOperationSuccess() {}
-    default void onPostgresChanges(String record) {}
-    default void onProgress(int progress) {}
-    default void onUploadSuccess(String downloadUrl) {}
-    default void onDownloadSuccess(String filePath) {}
+public abstract class SupabaseCallback {
+    public void onSuccess(String result) {}
+    public void onFailure(String errorMessage) {}
+    public void onDataFetched(String resultJson) {}
+    public void onOperationSuccess() {}
+    public void onPostgresChanges(String record) {}
+    public void onProgress(int progress) {}
+    public void onUploadSuccess(String downloadUrl) {}
+    public void onDownloadSuccess(String filePath) {}
 }
 ```
 

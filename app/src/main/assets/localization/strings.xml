@@ -1389,7 +1389,7 @@ Do you want to continue?"</string>
     <string name="facebook_url">aa</string>
     <string name="firebase_database_url">https://dependable-flag-825.firebaseio.com</string>
     <string name="ga_trackingId">UA-80718117-1</string>
-    <string name="ideas_url">https://t.me/sketcware_ia</string>
+    <string name="ideas_url">https://t.me/copkg</string>
     <string name="invalid_component">Invalid component</string>
     <string name="invalid_icon_id">Invalid icon ID</string>
     <string name="invalid_required_fields">Some required fields are empty</string>

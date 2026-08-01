@@ -75,23 +75,23 @@ public class ExtraBlocks {
         arrayList.add(addBlock("rewardedVideoAdShow", " ", "", "%1s.show(%2$s.this, _%1$s_on_user_earned_reward_listener);", "#2ca5e2", "%m.videoad show in %m.activity"));
 
         // Supabase Auth Blocks
-        arrayList.add(addBlock("supabaseAuthSignUp", " ", "", "SupabaseClient.getInstance().signUp(%1$s, %2$s, _%3$s_auth_listener);", "#3b4472", "Supabase Auth: Sign Up %m.supabaseauth with Email %s Password %s"));
-        arrayList.add(addBlock("supabaseAuthLogin", " ", "", "SupabaseClient.getInstance().signIn(%1$s, %2$s, _%3$s_auth_listener);", "#3b4472", "Supabase Auth: Log In %m.supabaseauth with Email %s Password %s"));
+        arrayList.add(addBlock("supabaseAuthSignUp", " ", "", "SupabaseClient.getInstance().signUp(%2$s, %3$s, _%1$s_auth_listener);", "#3b4472", "Supabase Auth: Sign Up %m.supabaseauth with Email %s Password %s"));
+        arrayList.add(addBlock("supabaseAuthLogin", " ", "", "SupabaseClient.getInstance().signIn(%2$s, %3$s, _%1$s_auth_listener);", "#3b4472", "Supabase Auth: Log In %m.supabaseauth with Email %s Password %s"));
         arrayList.add(addBlock("supabaseAuthLogout", " ", "", "SupabaseClient.getInstance().signOut();", "#3b4472", "Supabase Auth: Log Out %m.supabaseauth"));
         arrayList.add(addBlock("supabaseAuthGetUser", "s", "", "SupabaseClient.getInstance().getCurrentUser()", "#3b4472", "Supabase Auth: %m.supabaseauth Current User Email"));
 
         // Supabase Database Blocks
-        arrayList.add(addBlock("supabaseDbInsert", " ", "", "SupabaseClient.getInstance().insertRow(%1$s, %2$s, _%3$s_db_listener);", "#3f51b5", "Supabase DB: Insert %m.supabasedb row in table %s from Map %m.varMap"));
-        arrayList.add(addBlock("supabaseDbSelect", " ", "", "SupabaseClient.getInstance().selectRows(%1$s, _%2$s_db_listener);", "#3f51b5", "Supabase DB: Get rows %m.supabasedb from table %s"));
-        arrayList.add(addBlock("supabaseDbUpdate", " ", "", "SupabaseClient.getInstance().updateRow(%1$s, %2$s, %3$s, %4$s, _%5$s_db_listener);", "#3f51b5", "Supabase DB: Update %m.supabasedb table %s row key %s value %s from Map %m.varMap"));
-        arrayList.add(addBlock("supabaseDbDelete", " ", "", "SupabaseClient.getInstance().deleteRow(%1$s, %2$s, %3$s, _%4$s_db_listener);", "#3f51b5", "Supabase DB: Delete %m.supabasedb from table %s where key %s equals %s"));
+        arrayList.add(addBlock("supabaseDbInsert", " ", "", "SupabaseClient.getInstance().insertRow(%2$s, %3$s, _%1$s_db_listener);", "#3f51b5", "Supabase DB: Insert %m.supabasedb row in table %s from Map %m.varMap"));
+        arrayList.add(addBlock("supabaseDbSelect", " ", "", "SupabaseClient.getInstance().selectRows(%2$s, _%1$s_db_listener);", "#3f51b5", "Supabase DB: Get rows %m.supabasedb from table %s"));
+        arrayList.add(addBlock("supabaseDbUpdate", " ", "", "SupabaseClient.getInstance().updateRow(%2$s, %3$s, %4$s, %5$s, _%1$s_db_listener);", "#3f51b5", "Supabase DB: Update %m.supabasedb table %s row key %s value %s from Map %m.varMap"));
+        arrayList.add(addBlock("supabaseDbDelete", " ", "", "SupabaseClient.getInstance().deleteRow(%2$s, %3$s, %4$s, _%1$s_db_listener);", "#3f51b5", "Supabase DB: Delete %m.supabasedb from table %s where key %s equals %s"));
 
         // Supabase Realtime Blocks
-        arrayList.add(addBlock("supabaseRealtimeListen", " ", "", "SupabaseClient.getInstance().listenTable(%1$s, _%2$s_realtime_listener);", "#455a64", "Supabase Realtime: Listen %m.supabaserealtime to table %s changes"));
+        arrayList.add(addBlock("supabaseRealtimeListen", " ", "", "SupabaseClient.getInstance().listenTable(%2$s, _%1$s_realtime_listener);", "#455a64", "Supabase Realtime: Listen %m.supabaserealtime to table %s changes"));
 
         // Supabase Storage Blocks
-        arrayList.add(addBlock("supabaseStorageUpload", " ", "", "SupabaseClient.getInstance().uploadFile(%1$s, %2$s, %3$s, _%4$s_storage_listener);", "#009688", "Supabase Storage: Upload file %m.supabasestorage %s to bucket %s destination %s"));
-        arrayList.add(addBlock("supabaseStorageDownload", " ", "", "SupabaseClient.getInstance().downloadFile(%1$s, %2$s, %3$s, _%4$s_storage_listener);", "#009688", "Supabase Storage: Download %m.supabasestorage from bucket %s source %s to destination %s"));
+        arrayList.add(addBlock("supabaseStorageUpload", " ", "", "SupabaseClient.getInstance().uploadFile(%2$s, %3$s, %4$s, _%1$s_storage_listener);", "#009688", "Supabase Storage: Upload file %m.supabasestorage %s to bucket %s destination %s"));
+        arrayList.add(addBlock("supabaseStorageDownload", " ", "", "SupabaseClient.getInstance().downloadFile(%2$s, %3$s, %4$s, _%1$s_storage_listener);", "#009688", "Supabase Storage: Download %m.supabasestorage from bucket %s source %s to destination %s"));
 
         // Reyaansh's Custom Inbuilt Utility Blocks Library - 300 Blocks
                 
