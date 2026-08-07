@@ -67,8 +67,61 @@ public final class VoidPortLlmRequestService {
 
         String text = providerConfig.family == ProviderFamily.ANTHROPIC
                 ? completeAnthropic(providerConfig, modelName, systemPrompt, userPrompt, maxTokens, temperature, stopTokens)
+                : providerConfig.family == ProviderFamily.GEMINI
+                ? completeGemini(providerConfig, modelName, systemPrompt, userPrompt, maxTokens, temperature, stopTokens)
                 : completeOpenAiCompatible(providerConfig, modelName, systemPrompt, userPrompt, maxTokens, temperature, stopTokens);
         return new TextResult(providerId, modelName, text);
+    }
+
+    private static String completeGemini(ProviderConfig providerConfig, String modelName,
+                                         String systemPrompt, String userPrompt, int maxTokens,
+                                         double temperature, List<String> stopTokens) throws Exception {
+        JSONObject jsonBody = new JSONObject();
+        jsonBody.put("contents", new JSONArray().put(new JSONObject()
+                .put("role", "user")
+                .put("parts", new JSONArray().put(new JSONObject()
+                        .put("text", userPrompt == null ? "" : userPrompt)))));
+        if (systemPrompt != null && !systemPrompt.trim().isEmpty()) {
+            jsonBody.put("systemInstruction", new JSONObject()
+                    .put("parts", new JSONArray().put(new JSONObject()
+                            .put("text", systemPrompt))));
+        }
+
+        JSONObject generationConfig = new JSONObject();
+        generationConfig.put("maxOutputTokens", Math.max(1, maxTokens));
+        generationConfig.put("temperature", temperature);
+        JSONArray stops = stopArray(stopTokens);
+        if (stops.length() > 0) {
+            generationConfig.put("stopSequences", stops);
+        }
+        jsonBody.put("generationConfig", generationConfig);
+
+        String url = providerConfig.baseUrl + "/models/" + modelName + ":generateContent?key=" + providerConfig.apiKey;
+
+        Request request = new Request.Builder()
+                .url(url)
+                .headers(buildOpenAiHeaders(providerConfig))
+                .post(RequestBody.create(jsonBody.toString(), JSON_MEDIA_TYPE))
+                .build();
+        try (Response response = CLIENT.newCall(request).execute()) {
+            String responseBody = response.body() != null ? response.body().string() : "";
+            if (!response.isSuccessful()) {
+                throw new Exception("LLM request failed (" + response.code() + "): " + responseBody);
+            }
+            JSONObject json = new JSONObject(responseBody);
+            JSONArray candidates = json.optJSONArray("candidates");
+            JSONObject firstCandidate = candidates != null && candidates.length() > 0 ? candidates.optJSONObject(0) : null;
+            JSONObject content = firstCandidate != null ? firstCandidate.optJSONObject("content") : null;
+            JSONArray parts = content != null ? content.optJSONArray("parts") : null;
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; parts != null && i < parts.length(); i++) {
+                JSONObject part = parts.optJSONObject(i);
+                if (part != null && part.has("text")) {
+                    builder.append(part.optString("text", ""));
+                }
+            }
+            return builder.toString().trim();
+        }
     }
 
     private static String completeOpenAiCompatible(ProviderConfig providerConfig, String modelName,
